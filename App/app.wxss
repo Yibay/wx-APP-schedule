@@ -1,4 +1,7 @@
 /**app.wxss**/
+.g-page-container {
+  height: 100vh;
+}
 .container {
   height: 100%;
   display: flex;

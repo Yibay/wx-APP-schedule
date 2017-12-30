@@ -1,21 +1,67 @@
 /**index.wxss**/
-.userinfo {
+/* 日历组件 */
+.m-calendar{
+  font-size: 30rpx;
+}
+.m-calendar::before,.m-calendar::after{
+  display: table;
+  content: '';
+  clear: both;
+}
+/* 日历组件：月头部 */
+.m-calendar .month-header{
   display: flex;
-  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  line-height: 3em;
+  color: #f26293;
+}
+.m-calendar .month-header .current-month{
+  margin: 0 130rpx;
+}
+.m-calendar .month-header .settings{
+  position: absolute;
+  right: 50rpx;
+}
+/* 日历组件：星期头部 */
+.m-calendar .week-header{
+  display: flex;
+  color: #fdb7cf;
+}
+.m-calendar .week-header .day{
+  flex: 1;
+  text-align: center;
+}
+/* 日历组件：日期头部 */
+.m-calendar .date-header .day{
+  display: flex;
+  float: left;
+  width: calc(100vw / 7 );
+  height: calc(100vw / 7);
+  padding: 25rpx;
+  margin-bottom: -25rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background: #efefef;
+  background-clip: content-box;
+  justify-content: center;
   align-items: center;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.m-calendar .date-header.start-day-1 .day:first-of-type{
+  margin-left: calc(100vw / 7)
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.m-calendar .date-header.start-day-2 .day:first-of-type{
+  margin-left: calc(100vw / 7 * 2)
 }
-
-.usermotto {
-  margin-top: 200px;
+.m-calendar .date-header.start-day-3 .day:first-of-type{
+  margin-left: calc(100vw / 7 * 3)
+}
+.m-calendar .date-header.start-day-4 .day:first-of-type{
+  margin-left: calc(100vw / 7 * 4)
+}
+.m-calendar .date-header.start-day-5 .day:first-of-type{
+  margin-left: calc(100vw / 7 * 5)
+}
+.m-calendar .date-header.start-day-6 .day:first-of-type{
+  margin-left: calc(100vw / 7 * 6)
 }

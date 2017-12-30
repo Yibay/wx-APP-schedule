@@ -1,13 +1,26 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<view class="g-page-container">
+  <view class="m-calendar">
+    <!-- 月头部 -->
+    <view class="month-header">
+      <view class="last-month" bind:tap="handleToLastMonth">《</view>
+      <view class="current-month">{{date.currentYear}} 年 {{date.currentMonth + 1}} 月</view>
+      <view class="next-month" bind:tap="handleToNextMonth">》</view>
+      <view class="settings">设置</view>
+    </view>
+    <!-- 周头部 -->
+    <view class="week-header">
+      <view class="day">日</view>
+      <view class="day">一</view>
+      <view class="day">二</view>
+      <view class="day">三</view>
+      <view class="day">四</view>
+      <view class="day">五</view>
+      <view class="day">六</view>
+    </view>
+    <!-- 日历表 -->
+    <view class="date-header start-day-{{date.startDay}}">
+      <view wx:for="{{date.days}}" wx:key="{{id}}" class="day">{{item.id}}</view>
+    </view>
   </view>
 </view>
