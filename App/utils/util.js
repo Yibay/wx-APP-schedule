@@ -18,5 +18,6 @@ const formatNumber = n => {
 
 // 暴露接口
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  formatNumber: formatNumber
 }

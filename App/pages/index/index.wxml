@@ -19,8 +19,22 @@
       <view class="day">六</view>
     </view>
     <!-- 日历表 -->
-    <view class="date-header start-day-{{date.startDay}}">
-      <view wx:for="{{date.days}}" wx:key="{{id}}" class="day">{{item.id}}</view>
+    <view class="date-header start-day-{{date.startDay}}" bind:tap="handleChangeDate">
+      <view wx:for="{{date.days}}" wx:key="{{id}}" class="day" data-day="{{item.id}}" style="background-color: {{item.record.bgcolor}};color: {{item.record.color}};">{{item.id}}</view>
     </view>
+    <!-- 颜色说明 -->
+    <view class="color-intro">
+      <view class="title">颜色说明:</view>
+      <view class="content">
+        <view wx:for="{{eventType}}" wx:key="{{text}}" class="type" style="background-color: {{item.bgcolor}};color: {{item.color}};">{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 当日详情 -->
+  <view class="m-record">
+     <view>今天是{{date.currentYear}}年{{date.currentMonth + 1}}月{{date.currentDate}}日</view> 
+    <!-- 设置当日事件类型 -->
+    <button class="handleSetDateType" bind:tap="handleSetDateType">设置</button>
+    <!-- 记录表单 -->
   </view>
 </view>

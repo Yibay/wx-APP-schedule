@@ -33,6 +33,12 @@
   text-align: center;
 }
 /* 日历组件：日期头部 */
+.m-calendar .date-header::before,
+.m-calendar .date-header::after{
+  display: table;
+  content: '';
+  clear: both;
+}
 .m-calendar .date-header .day{
   display: flex;
   float: left;
@@ -64,4 +70,39 @@
 }
 .m-calendar .date-header.start-day-6 .day:first-of-type{
   margin-left: calc(100vw / 7 * 6)
+}
+/* 日历组件：颜色说明 */
+.m-calendar .color-intro::before,
+.m-calendar .color-intro::after{
+  display: table;
+  content: '';
+  clear: both;
+}
+.m-calendar .color-intro .title{
+  margin-top: 30rpx;
+  padding: 0 25rpx;
+}
+.m-calendar .color-intro .content .type{
+  display: flex;
+  float: left;
+  width: calc(100vw / 7);
+  height: calc(100vw / 7);
+  padding: 25rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-clip: content-box;
+  justify-content: center;
+  align-items: center;
+  font-size: 20rpx;
+  color: #fff;
+}
+
+/* 记录表单 */
+.m-record-form{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
 }
