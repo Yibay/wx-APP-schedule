@@ -98,11 +98,29 @@
 }
 
 /* 记录表单 */
-.m-record-form{
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.5);
+.m-record{
+  padding: 0 25rpx;
+  font-size: 30rpx;
+}
+.m-record .date{
+  padding-top: 20rpx;
+  border-top: 1px dashed #fdb7cf;
+  line-height: 2em;
+  font-weight: 700;
+}
+.m-record .dateTypeBox::before,
+.m-record .dateTypeBox::after{
+  display: table;
+  content: '';
+  clear: both;
+}
+.m-record .dateTypeBox label{
+  float: left;
+  line-height: 2.5em;
+}
+.m-record .SetDateType{
+  float: left;
+  width: 5em;
+  margin-left: 20rpx;
+  font-size: 30rpx;
 }

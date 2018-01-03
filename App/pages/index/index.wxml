@@ -6,7 +6,7 @@
       <view class="last-month" bind:tap="handleToLastMonth">《</view>
       <view class="current-month">{{date.currentYear}} 年 {{date.currentMonth + 1}} 月</view>
       <view class="next-month" bind:tap="handleToNextMonth">》</view>
-      <view class="settings">设置</view>
+      <!-- <view class="settings">设置</view> -->
     </view>
     <!-- 周头部 -->
     <view class="week-header">
@@ -32,9 +32,12 @@
   </view>
   <!-- 当日详情 -->
   <view class="m-record">
-     <view>今天是{{date.currentYear}}年{{date.currentMonth + 1}}月{{date.currentDate}}日</view> 
+     <view class="date">{{date.currentYear}}年{{date.currentMonth + 1}}月{{date.currentDate}}日</view> 
     <!-- 设置当日事件类型 -->
-    <button class="handleSetDateType" bind:tap="handleSetDateType">设置</button>
+    <view class="dateTypeBox">
+      <label>选择活动类型:</label>
+      <button class="SetDateType" bind:tap="handleSetDateType">选择</button>
+    </view>
     <!-- 记录表单 -->
   </view>
 </view>
