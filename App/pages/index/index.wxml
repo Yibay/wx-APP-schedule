@@ -3,10 +3,11 @@
   <view class="m-calendar">
     <!-- 月头部 -->
     <view class="month-header">
-      <view class="last-month" bind:tap="handleToLastMonth">《</view>
+      <view class="last-month iconfont icon-left" bind:tap="handleToLastMonth" />
       <view class="current-month">{{date.currentYear}} 年 {{date.currentMonth + 1}} 月</view>
-      <view class="next-month" bind:tap="handleToNextMonth">》</view>
-      <!-- <view class="settings">设置</view> -->
+      <view class="next-month iconfont icon-right" bind:tap="handleToNextMonth" />
+      <view class="today" bind:tap="changeToToday">今</view> 
+      <view class="iconfont icon-add addActivity" bind:tap="addActivity" /> 
     </view>
     <!-- 周头部 -->
     <view class="week-header">
@@ -19,8 +20,17 @@
       <view class="day">六</view>
     </view>
     <!-- 日历表 -->
-    <view class="date-header start-day-{{date.startDay}}" bind:tap="handleChangeDate">
-      <view wx:for="{{date.days}}" wx:key="{{id}}" class="day" data-day="{{item.id}}" style="background-color: {{item.record.bgcolor}};color: {{item.record.color}};">{{item.id}}</view>
+    <view class="date-header" bind:tap="handleChangeDate">
+      <!-- 补充前置日历格子 -->
+      <view wx:for="{{date.beforeDays}}" wx:key="{{id}}" class="day" />
+      <!-- 正文日历格子 -->
+      <view wx:for="{{date.days}}" wx:key="{{id}}" class="day {{date.currentDate === item.id ? 'active' : 'none'}}" data-day="{{item.id}}">
+        {{item.id}}
+        <view class="address">上海</view>
+        <view class="type" style="background-color: {{item.record.bgcolor}}"></view>
+      </view>
+      <!-- 补充后续日历格子 -->
+      <view wx:for="{{date.afterDays}}" wx:key="{{id}}" class="day" />
     </view>
     <!-- 颜色说明 -->
     <view class="color-intro">

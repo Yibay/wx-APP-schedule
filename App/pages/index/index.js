@@ -7,13 +7,13 @@ const _ = require('../../utils/util.js')
 Page({
   data: {
     date: {}, // 日历组件：日期数据
-    eventType: [ // 当日事件类型
-      { text: '通告', bgcolor: '#ff619b', color: '#fff' },
-      { text: '彩排', bgcolor: '#b7b8f0', color: '#fff' },
-      { text: '会议', bgcolor: '#e06555', color: '#fff' },
-      { text: '筹备', bgcolor: '#6ad4fe', color: '#fff' },
-      { text: '其他', bgcolor: '#efefef', color: '#000' },
-    ]
+    eventType: { // 当日事件类型
+      type1: { text: '通告', bgcolor: '#ff619b', color: '#fff' },
+      type2: { text: '彩排', bgcolor: '#b7b8f0', color: '#fff' },
+      type3: { text: '会议', bgcolor: '#e06555', color: '#fff' },
+      type4: { text: '筹备', bgcolor: '#6ad4fe', color: '#fff' },
+      type5: { text: '其他', bgcolor: '#efefef', color: '#000' },
+    }
   },
   //事件处理函数
   bindViewTap: function() {
@@ -50,6 +50,16 @@ Page({
     var currentDate = date.getDate() // 日
     // 月初星期几（0~6 星期日~星期六）
     var startDay = new Date(currentYear, currentMonth, 1).getDay()
+    var beforeDays = new Array(startDay);
+    for(var i=0; i<startDay; i++){
+      beforeDays[i] = {id: `before${i}`};
+    }
+    // 月末星期几（0~6 星期日~星期六）
+    var endDay = new Date(currentYear, currentMonth + 1, 0).getDay()
+    var afterDays = new Array(6 - endDay);
+    for(var i=0; i<6 - endDay; i++){
+      afterDays[i] = {id: `after${i}`};
+    }
     // 获取本地储存 记录对象 (当前月)
     var record_key = `${currentYear}-${_.formatNumber(currentMonth)}`
     var record = wx.getStorageSync(record_key) || {}
@@ -67,12 +77,13 @@ Page({
     console.log(days);
     return {
       datetime: date,
-      currentYear,
-      currentMonth,
-      currentDate,
-      startDay,
-      numOfDay,
-      days
+      currentYear, // 本地储存数据结构中，wx.setStorageSync('yyyy-01', {04: {type:...}})
+      currentMonth, // 本地储存数据结构中，wx.setStorageSync('2017-mm', {04: {type:...}})
+      currentDate, // 本地储存数据结构中，wx.setStorageSync('2017-01', {dd: {type:...}})
+      beforeDays, // 用于wxml中填补前置空格
+      afterDays, // 用于wxml中填补后续空格 
+      numOfDay, // 本月天数，用于 上一月，下一月时，判断 当前日数 是否超出上、下月总天数
+      days // 本月天数数组，用于 wxml 展示
     }
   },
   /** 
@@ -86,7 +97,8 @@ Page({
       'date.currentYear': calendarData.currentYear,
       'date.currentMonth': calendarData.currentMonth,
       'date.currentDate': calendarData.currentDate,
-      'date.startDay': calendarData.startDay,
+      'date.beforeDays': calendarData.beforeDays,
+      'date.afterDays': calendarData.afterDays,
       'date.days': calendarData.days
     })
   },
@@ -139,29 +151,46 @@ Page({
     this.updateCalendar(new Date(this.data.date.currentYear, this.data.date.currentMonth, evt.target.dataset.day))
   },
 
+  /* 组件事件：切换到今天 */
+  changeToToday: function(){
+    this.updateCalendar(new Date());
+  },
+
+  /* 组件事件：添加活动 */
+  addActivity: function(){
+    // 当日年、月、日 数据同步到全局数据 (如此 新页面也可获得日期数据)
+    app.globalData.current.currentYear = this.data.date.currentYear;
+    app.globalData.current.currentMonth = this.data.date.currentMonth;
+    app.globalData.current.currentDate = this.data.date.currentDate;
+    // 新建行程页
+    wx.navigateTo({
+      url: '../addActivity/addActivity',
+    })
+  },
+
   /* 当日详情组件 */
   /* 组件事件：设置当日 事件类型 */
   handleSetDateType: function(){
     var that = this
-    var itemList = this.data.eventType.map(item => item.text)
+    // var itemList = this.data.eventType.map(item => item.text)
     // 显示操作菜单
-    wx.showActionSheet({
-      itemList: itemList,
-      success: function (res) {
+    // wx.showActionSheet({
+    //   itemList: itemList,
+    //   success: function (res) {
         // 选中事件类型
-        var eventType = that.data.eventType[res.tapIndex]
+        // var eventType = that.data.eventType[res.tapIndex]
         // 更新当日事件类型
-        that.setRecord({
-          bgcolor: eventType.bgcolor,
-          color: eventType.color
-        })
+        // that.setRecord({
+        //   bgcolor: eventType.bgcolor,
+        //   color: eventType.color
+        // })
         // 更新日历数据
-        that.updateCalendar(new Date(that.data.date.currentYear, that.data.date.currentMonth, that.data.date.currentDate))
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
+    //     that.updateCalendar(new Date(that.data.date.currentYear, that.data.date.currentMonth, that.data.date.currentDate))
+    //   },
+    //   fail: function (res) {
+    //     console.log(res.errMsg)
+    //   }
+    // })
   },
   /** 
    * 组件方法：更新当日 事件类型

@@ -1,3 +1,4 @@
+@import "/assets/iconfont/iconfont.wxss";
 /**index.wxss**/
 /* 日历组件 */
 .m-calendar{
@@ -12,20 +13,39 @@
 .m-calendar .month-header{
   display: flex;
   position: relative;
-  justify-content: center;
+  padding: 0 20rpx;
+  justify-content: flex-start;
   line-height: 3em;
   color: #f26293;
 }
 .m-calendar .month-header .current-month{
-  margin: 0 130rpx;
+  margin: 0 20rpx;
+  font-size: 35rpx;
+  font-weight: 700;
 }
-.m-calendar .month-header .settings{
+.m-calendar .month-header .today,
+.m-calendar .month-header .addActivity{
   position: absolute;
-  right: 50rpx;
+  top: 50%;
+  border: 1rpx solid #f26293;
+  width: 50rpx;
+  height: 50rpx;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 35rpx;
+}
+.m-calendar .month-header .today{
+  right: 120rpx;
+}
+.m-calendar .month-header .addActivity{
+  right: 30rpx;
 }
 /* 日历组件：星期头部 */
 .m-calendar .week-header{
   display: flex;
+  border-top: 1px solid #bebebe;
   color: #fdb7cf;
 }
 .m-calendar .week-header .day{
@@ -33,6 +53,10 @@
   text-align: center;
 }
 /* 日历组件：日期头部 */
+.m-calendar .date-header{
+  border-bottom: 1px solid #bebebe;
+  border-right: 1px solid #bebebe;
+}
 .m-calendar .date-header::before,
 .m-calendar .date-header::after{
   display: table;
@@ -41,35 +65,33 @@
 }
 .m-calendar .date-header .day{
   display: flex;
+  position: relative;
   float: left;
-  width: calc(100vw / 7 );
-  height: calc(100vw / 7);
-  padding: 25rpx;
-  margin-bottom: -25rpx;
-  border-radius: 50%;
+  width: calc((100vw - 1px ) / 7 );
+  height: calc((100vw - 1px) / 7);
+  padding: 10rpx 20rpx;
   box-sizing: border-box;
-  background: #efefef;
-  background-clip: content-box;
-  justify-content: center;
-  align-items: center;
+  border-left: 1rpx solid #bebebe;
+  border-top: 1rpx solid #bebebe;
+  font-size: 35rpx;
+  font-weight: 700;
 }
-.m-calendar .date-header.start-day-1 .day:first-of-type{
-  margin-left: calc(100vw / 7)
+.m-calendar .date-header .day.active{
+  background: #f2f2f2;
 }
-.m-calendar .date-header.start-day-2 .day:first-of-type{
-  margin-left: calc(100vw / 7 * 2)
+.m-calendar .date-header .day .address{
+  position: absolute;
+  bottom: 15rpx;
+  left: 10rpx;
+  font-size: 18rpx;
 }
-.m-calendar .date-header.start-day-3 .day:first-of-type{
-  margin-left: calc(100vw / 7 * 3)
-}
-.m-calendar .date-header.start-day-4 .day:first-of-type{
-  margin-left: calc(100vw / 7 * 4)
-}
-.m-calendar .date-header.start-day-5 .day:first-of-type{
-  margin-left: calc(100vw / 7 * 5)
-}
-.m-calendar .date-header.start-day-6 .day:first-of-type{
-  margin-left: calc(100vw / 7 * 6)
+.m-calendar .date-header .day .type{
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+  width: 30rpx;
+  height: 10rpx;
+  border-radius: 5rpx;
 }
 /* 日历组件：颜色说明 */
 .m-calendar .color-intro::before,
