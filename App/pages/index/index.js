@@ -50,7 +50,7 @@ Page({
     var currentDate = date.getDate() // 日
     // 月初星期几（0~6 星期日~星期六）
     var startDay = new Date(currentYear, currentMonth, 1).getDay()
-    // 获取记录对象
+    // 获取本地储存 记录对象 (当前月)
     var record_key = `${currentYear}-${_.formatNumber(currentMonth)}`
     var record = wx.getStorageSync(record_key) || {}
     console.log(record)
