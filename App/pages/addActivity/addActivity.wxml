@@ -1,0 +1,28 @@
+<!-- addActivity.wxml -->
+<view class='g-page-container'>
+  <view class='g-header'>
+    <view class='left-btn' bind:tap='cancel'>取消</view>
+    <view class='title'>新建行程</view>
+    <view class='right-btn'>完成</view>
+  </view>
+  <view class='g-content'>
+    <form class='m-addActivity'>
+      <!-- 活动主题 -->
+      <input class='section' placeholder='主题' />
+      <!-- 活动时间 -->
+      <view class='section'>
+        <view>时间</view>
+        <picker mode='time' class='start-time' bind:change='startTimeChange'>
+          <view>{{activityStartTime}}</view>
+        </picker>
+        <view>至</view>
+        <picker mode='time' class='end-time' bind:change='endTimeChange'>
+          <view>{{activityEndTime}}</view>
+        </picker>
+      </view>
+      <!-- 备注信息 -->
+      <textarea class='remark' placeholder='备注' />
+      <!-- 类别 -->
+    </form>
+  </view>
+</view>
