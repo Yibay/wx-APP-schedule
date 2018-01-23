@@ -7,13 +7,7 @@ const _ = require('../../utils/util.js')
 Page({
   data: {
     date: {}, // 日历组件：日期数据
-    eventType: { // 当日事件类型
-      type1: { text: '通告', bgcolor: '#ff619b', color: '#fff' },
-      type2: { text: '彩排', bgcolor: '#b7b8f0', color: '#fff' },
-      type3: { text: '会议', bgcolor: '#e06555', color: '#fff' },
-      type4: { text: '筹备', bgcolor: '#6ad4fe', color: '#fff' },
-      type5: { text: '其他', bgcolor: '#efefef', color: '#000' },
-    }
+    eventType: app.globalData.eventType
   },
   //事件处理函数
   bindViewTap: function() {
@@ -23,6 +17,13 @@ Page({
   },
   // 生命周期：页面加载
   onLoad: function () {
+    // 获取当前选中日期
+    var date = this.data.date.datetime || new Date()
+    // 初始化日历组件
+    this.updateCalendar(date)
+  },
+  // 生命周期：页面显示
+  onShow: function () {
     // 获取当前选中日期
     var date = this.data.date.datetime || new Date()
     // 初始化日历组件
@@ -151,6 +152,11 @@ Page({
     this.updateCalendar(new Date(this.data.date.currentYear, this.data.date.currentMonth, evt.target.dataset.day))
   },
 
+  /* 组件事件：切换月 */
+  handleChangeMonth: function(evt){
+    console.log(evt);
+  },
+
   /* 组件事件：切换到今天 */
   changeToToday: function(){
     this.updateCalendar(new Date());
@@ -172,25 +178,26 @@ Page({
   /* 组件事件：设置当日 事件类型 */
   handleSetDateType: function(){
     var that = this
-    // var itemList = this.data.eventType.map(item => item.text)
+    console.log(this.data.eventType)
+    var itemList = this.data.eventType.map(item => item.text)
     // 显示操作菜单
-    // wx.showActionSheet({
-    //   itemList: itemList,
-    //   success: function (res) {
+    wx.showActionSheet({
+      itemList: itemList,
+      success: function (res) {
         // 选中事件类型
-        // var eventType = that.data.eventType[res.tapIndex]
+        var eventType = that.data.eventType[res.tapIndex]
         // 更新当日事件类型
-        // that.setRecord({
-        //   bgcolor: eventType.bgcolor,
-        //   color: eventType.color
-        // })
+        that.setRecord({
+          bgcolor: eventType.bgcolor,
+          color: eventType.color
+        })
         // 更新日历数据
-    //     that.updateCalendar(new Date(that.data.date.currentYear, that.data.date.currentMonth, that.data.date.currentDate))
-    //   },
-    //   fail: function (res) {
-    //     console.log(res.errMsg)
-    //   }
-    // })
+        that.updateCalendar(new Date(that.data.date.currentYear, that.data.date.currentMonth, that.data.date.currentDate))
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
   /** 
    * 组件方法：更新当日 事件类型

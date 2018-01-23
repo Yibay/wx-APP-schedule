@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/addActivity/addActivity",
     "pages/index/index",
+    "pages/addActivity/addActivity",
     "pages/logs/logs"
   ],
   "window":{

@@ -3,7 +3,7 @@
   <view class='g-header'>
     <view class='left-btn' bind:tap='cancel'>取消</view>
     <view class='title'>新建行程</view>
-    <view class='right-btn'>完成</view>
+    <view class='right-btn' bind:tap='submit'>完成</view>
   </view>
   <view class='g-content'>
     <form class='m-addActivity'>
@@ -23,6 +23,19 @@
       <!-- 备注信息 -->
       <textarea class='remark' placeholder='备注' />
       <!-- 类别 -->
+      <view class='section'>
+        <view>类别</view>
+        <view class='activity-type' bind:tap='typeChange'>
+          <view>{{activityType[activityTypeIndex].text}}</view>
+        </view>
+      </view>
+      <!-- 城市 -->
+      <view class='section'>
+        <view>城市</view>
+        <picker mode='region' class='activity-region' bind:change='regionChange'>
+          <view>{{region}}</view>
+        </picker>
+      </view>
     </form>
   </view>
 </view>

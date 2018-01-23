@@ -16,8 +16,28 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// 复制 对象属性
+const assign = (obj, sourceObj) => {
+  obj = Object(obj);
+  Reflect.ownKeys(sourceObj).forEach(key => {
+    obj[key] = sourceObj[key];
+  });
+  return obj;
+}
+
+// 过滤掉，某些属性 (不改变原对象)
+const omit = (obj, omitKeysArray) => {
+  var new_obj = assign({}, obj);
+  for (let key of omitKeysArray){
+    delete new_obj[key];
+  }
+  return new_obj;
+}
+
 // 暴露接口
 module.exports = {
   formatTime: formatTime,
-  formatNumber: formatNumber
+  formatNumber: formatNumber,
+  assign: assign,
+  omit
 }

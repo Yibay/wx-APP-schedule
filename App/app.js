@@ -36,6 +36,13 @@ App({
   },
   globalData: {
     userInfo: null,
-    current: {}
+    current: {},
+    eventType: [ // 当日事件类型
+      { type: 0, text: '通告', bgcolor: '#ff619b', color: '#fff' },
+      { type: 1, text: '彩排', bgcolor: '#b7b8f0', color: '#fff' },
+      { type: 2, text: '会议', bgcolor: '#e06555', color: '#fff' },
+      { type: 3, text: '筹备', bgcolor: '#6ad4fe', color: '#fff' },
+      { type: 4, text: '其他', bgcolor: '#efefef', color: '#000' },
+    ]
   }
 })

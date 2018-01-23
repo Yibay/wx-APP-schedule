@@ -20,13 +20,13 @@
       <view class="day">六</view>
     </view>
     <!-- 日历表 -->
-    <view class="date-header" bind:tap="handleChangeDate">
+    <view class="date-header" bind:tap="handleChangeDate" bind:touchmove="handleChangeMonth">
       <!-- 补充前置日历格子 -->
       <view wx:for="{{date.beforeDays}}" wx:key="{{id}}" class="day" />
       <!-- 正文日历格子 -->
       <view wx:for="{{date.days}}" wx:key="{{id}}" class="day {{date.currentDate === item.id ? 'active' : 'none'}}" data-day="{{item.id}}">
         {{item.id}}
-        <view class="address">上海</view>
+        <view class="address">{{item.record.text}}</view>
         <view class="type" style="background-color: {{item.record.bgcolor}}"></view>
       </view>
       <!-- 补充后续日历格子 -->
@@ -41,13 +41,13 @@
     </view>
   </view>
   <!-- 当日详情 -->
-  <view class="m-record">
-     <view class="date">{{date.currentYear}}年{{date.currentMonth + 1}}月{{date.currentDate}}日</view> 
+  <!-- <view class="m-record"> -->
+      <!-- <view class="date">{{date.currentYear}}年{{date.currentMonth + 1}}月{{date.currentDate}}日</view>   -->
     <!-- 设置当日事件类型 -->
-    <view class="dateTypeBox">
-      <label>选择活动类型:</label>
-      <button class="SetDateType" bind:tap="handleSetDateType">选择</button>
-    </view>
+     <!-- <view class="dateTypeBox"> 
+       <label>选择活动类型:</label> 
+       <button class="SetDateType" bind:tap="handleSetDateType">选择</button> 
+     </view>  -->
     <!-- 记录表单 -->
-  </view>
+  <!-- </view> -->
 </view>
