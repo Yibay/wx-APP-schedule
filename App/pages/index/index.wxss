@@ -52,6 +52,10 @@
   flex: 1;
   text-align: center;
 }
+/* 日历组件 轮播区域 */
+.m-calendar .date-swiper{
+  height: calc(100vw - 1px);
+}
 /* 日历组件：日期头部 */
 .m-calendar .date-header{
   border-bottom: 1px solid #bebebe;

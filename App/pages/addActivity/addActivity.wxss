@@ -12,7 +12,6 @@
 }
 .g-header .left-btn, .g-header .right-btn{
   font-size: 38rpx;
-  color: #2082d9;
 }
 /* 内容区，填写表单 */
 .g-content{
@@ -21,29 +20,14 @@
 }
 .m-addActivity .section{
   display: flex;
-  padding: 18rpx 25rpx;
-  margin-bottom: 20rpx;
-  border: 2rpx solid #dcdcdc;
-  border-radius: 15rpx;
-}
-.m-addActivity .start-time,
-.m-addActivity .end-time{
-  flex: 1;
-  text-align: center;
-  color: #c7c7c7;
-}
-.m-addActivity .remark{
-  display: block;
   width: 100%;
-  height: 250rpx;
   padding: 18rpx 25rpx;
   margin-bottom: 20rpx;
   border: 2rpx solid #dcdcdc;
   border-radius: 15rpx;
   box-sizing: border-box;
 }
-.m-addActivity .activity-type,
-.m-addActivity .activity-region {
+.m-addActivity .activity-type {
   flex: 1;
   height: 100%;
   text-align: right;

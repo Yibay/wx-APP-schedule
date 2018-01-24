@@ -8,33 +8,15 @@
   <view class='g-content'>
     <form class='m-addActivity'>
       <!-- 活动主题 -->
-      <input class='section' placeholder='主题' />
-      <!-- 活动时间 -->
       <view class='section'>
-        <view>时间</view>
-        <picker mode='time' class='start-time' bind:change='startTimeChange'>
-          <view>{{activityStartTime}}</view>
-        </picker>
-        <view>至</view>
-        <picker mode='time' class='end-time' bind:change='endTimeChange'>
-          <view>{{activityEndTime}}</view>
-        </picker>
+        <textarea placeholder='请输入行程内容' auto-height />
       </view>
-      <!-- 备注信息 -->
-      <textarea class='remark' placeholder='备注' />
       <!-- 类别 -->
       <view class='section'>
         <view>类别</view>
         <view class='activity-type' bind:tap='typeChange'>
           <view>{{activityType[activityTypeIndex].text}}</view>
         </view>
-      </view>
-      <!-- 城市 -->
-      <view class='section'>
-        <view>城市</view>
-        <picker mode='region' class='activity-region' bind:change='regionChange'>
-          <view>{{region}}</view>
-        </picker>
       </view>
     </form>
   </view>

@@ -5,11 +5,9 @@ const app = getApp();
 
 Page({
   data: {
-    activityStartTime: '00:00',
-    activityEndTime: '00:00',
-    region: '未填',
     activityTypeIndex: 0,
-    activityType: app.globalData.eventType
+    activityType: app.globalData.eventType,
+    autoHeight: true
   },
   // 生命周期：页面加载
   onLoad(){
@@ -31,16 +29,6 @@ Page({
     this.cancel();
   },
 
-  // 活动起始时间变更
-  startTimeChange(e){
-    this.setData({ activityStartTime: e.detail.value });
-  },
-
-  // 活动结束时间变更
-  endTimeChange(e){
-    this.setData({ activityEndTime: e.detail.value });
-  },
-
   // 切换类别
   typeChange(e){
     var that = this;
@@ -56,11 +44,6 @@ Page({
         console.log(res.errMsg)
       }
     })
-  },
-
-  // 切换城市
-  regionChange(e){
-    this.setData({ region: e.detail.value });
   },
 
   /** 

@@ -1,53 +1,53 @@
 <!--index.wxml-->
-<view class="g-page-container">
-  <view class="m-calendar">
+<view class='g-page-container'>
+  <view class='m-calendar'>
     <!-- 月头部 -->
-    <view class="month-header">
-      <view class="last-month iconfont icon-left" bind:tap="handleToLastMonth" />
-      <view class="current-month">{{date.currentYear}} 年 {{date.currentMonth + 1}} 月</view>
-      <view class="next-month iconfont icon-right" bind:tap="handleToNextMonth" />
-      <view class="today" bind:tap="changeToToday">今</view> 
-      <view class="iconfont icon-add addActivity" bind:tap="addActivity" /> 
+    <view class='month-header'>
+      <view class='last-month iconfont icon-left' bind:tap='handleToLastMonth' />
+      <view class='current-month'>{{date.currentYear}} 年 {{date.currentMonth + 1}} 月</view>
+      <view class='next-month iconfont icon-right' bind:tap='handleToNextMonth' />
+      <view class='today' bind:tap='changeToToday'>今</view> 
+      <view class='iconfont icon-add addActivity' bind:tap='addActivity' /> 
     </view>
     <!-- 周头部 -->
-    <view class="week-header">
-      <view class="day">日</view>
-      <view class="day">一</view>
-      <view class="day">二</view>
-      <view class="day">三</view>
-      <view class="day">四</view>
-      <view class="day">五</view>
-      <view class="day">六</view>
+    <view class='week-header'>
+      <view class='day'>日</view>
+      <view class='day'>一</view>
+      <view class='day'>二</view>
+      <view class='day'>三</view>
+      <view class='day'>四</view>
+      <view class='day'>五</view>
+      <view class='day'>六</view>
     </view>
     <!-- 日历表 -->
-    <view class="date-header" bind:tap="handleChangeDate" bind:touchmove="handleChangeMonth">
-      <!-- 补充前置日历格子 -->
-      <view wx:for="{{date.beforeDays}}" wx:key="{{id}}" class="day" />
-      <!-- 正文日历格子 -->
-      <view wx:for="{{date.days}}" wx:key="{{id}}" class="day {{date.currentDate === item.id ? 'active' : 'none'}}" data-day="{{item.id}}">
-        {{item.id}}
-        <view class="address">{{item.record.text}}</view>
-        <view class="type" style="background-color: {{item.record.bgcolor}}"></view>
-      </view>
-      <!-- 补充后续日历格子 -->
-      <view wx:for="{{date.afterDays}}" wx:key="{{id}}" class="day" />
-    </view>
-    <!-- 颜色说明 -->
-    <view class="color-intro">
-      <view class="title">颜色说明:</view>
-      <view class="content">
-        <view wx:for="{{eventType}}" wx:key="{{text}}" class="type" style="background-color: {{item.bgcolor}};color: {{item.color}};">{{item.text}}</view>
-      </view>
-    </view>
+    <swiper class='date-swiper' current='{{swiperIndex}}' bind:change='swiperCalendar' duration='{{0}}'>
+      <block wx:for='{{date.calendarSwiperArray}}' wx:for-item='monthItem'>
+        <swiper-item>
+          <view class='date-header' bind:tap='handleChangeDate' >
+            <!-- 补充前置日历格子 -->
+            <view wx:for='{{monthItem.beforeDays}}' wx:key='{{id}}' class='day' />
+            <!-- 正文日历格子 -->
+            <view wx:for='{{monthItem.days}}' wx:key='{{id}}' class='day {{date.currentDate === item.id ? "active" : "none"}}' data-day='{{item.id}}'>
+              {{item.id}}
+              <view class='address'>{{item.record.text}}</view>
+              <view class='type' style='background-color: {{item.record.bgcolor}}'></view>
+            </view>
+            <!-- 补充后续日历格子 -->
+            <view wx:for='{{monthItem.afterDays}}' wx:key='{{id}}' class='day' />
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    
   </view>
   <!-- 当日详情 -->
-  <!-- <view class="m-record"> -->
-      <!-- <view class="date">{{date.currentYear}}年{{date.currentMonth + 1}}月{{date.currentDate}}日</view>   -->
+   <view class='m-record'> 
+      <!-- <view class='date'>{{date.currentYear}}年{{date.currentMonth + 1}}月{{date.currentDate}}日</view>   -->
     <!-- 设置当日事件类型 -->
-     <!-- <view class="dateTypeBox"> 
+     <!-- <view class='dateTypeBox'> 
        <label>选择活动类型:</label> 
-       <button class="SetDateType" bind:tap="handleSetDateType">选择</button> 
+       <button class='SetDateType' bind:tap='handleSetDateType'>选择</button> 
      </view>  -->
     <!-- 记录表单 -->
-  <!-- </view> -->
+   </view> 
 </view>
