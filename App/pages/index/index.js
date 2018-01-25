@@ -7,7 +7,8 @@ const _ = require('../../utils/util.js')
 Page({
   data: {
     date: {}, // 日历组件：日期数据
-    swiperIndex: 1 // 3页日历 轮播，默认中间页（0、1、2）
+    swiperIndex: 1, // 3页日历 轮播，默认中间页（0、1、2）
+    duration: 300
   },
   // 生命周期：页面显示
   onShow: function () {
@@ -170,10 +171,28 @@ Page({
   /* 日历组件事件：滑到上、下一月 */
   swiperCalendar(evt){
     if(evt.detail.current === 2){
-      this.handleToNextMonth();
+      new Promise((resolve) => {
+        setTimeout(() => {
+          this.setData({ duration: 0 });
+          this.handleToNextMonth();
+          resolve();
+          }, 200)
+      })
+        .then(
+          () => { this.setData({ duration: 300 });}
+        )
     }
     else if(evt.detail.current === 0){
-      this.handleToLastMonth();
+      new Promise((resolve) => {
+        setTimeout(() => {
+          this.setData({ duration: 0 });
+          this.handleToLastMonth();
+          resolve();
+        }, 200)
+      })
+        .then(
+          () => { this.setData({ duration: 300 }); }
+        )
     }
   },
 

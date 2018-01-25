@@ -20,7 +20,7 @@
       <view class='day'>六</view>
     </view>
     <!-- 日历表 -->
-    <swiper class='date-swiper' current='{{swiperIndex}}' bind:change='swiperCalendar' duration='{{0}}'>
+    <swiper class='date-swiper' current='{{swiperIndex}}' bind:change='swiperCalendar' duration='{{duration}}'>
       <block wx:for='{{date.calendarSwiperArray}}' wx:for-item='monthItem'>
         <swiper-item>
           <view class='date-header' bind:tap='handleChangeDate' >
