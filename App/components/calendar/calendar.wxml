@@ -1,0 +1,40 @@
+<!-- 日历组件 -->
+<view class='m-calendar'>
+  <!-- 月头部 -->
+  <view class='month-header'>
+    <view class='last-month iconfont icon-left' bind:tap='handleToLastMonth' />
+    <view class='current-month'>{{date.currentYear}} 年 {{date.currentMonth + 1}} 月</view>
+    <view class='next-month iconfont icon-right' bind:tap='handleToNextMonth' />
+    <view class='today' bind:tap='changeToToday'>今</view> 
+    <view class='iconfont icon-add addActivity' bind:tap='addActivity' /> 
+  </view>
+  <!-- 周头部 -->
+  <view class='week-header'>
+    <view class='day'>日</view>
+    <view class='day'>一</view>
+    <view class='day'>二</view>
+    <view class='day'>三</view>
+    <view class='day'>四</view>
+    <view class='day'>五</view>
+    <view class='day'>六</view>
+  </view>
+  <!-- 日历表 -->
+  <swiper class='date-swiper' current='{{swiperIndex}}' bind:change='swiperCalendar' duration='{{duration}}'>
+    <block wx:for='{{date.calendarSwiperArray}}' wx:for-item='monthItem'>
+      <swiper-item>
+        <view class='date-header' bind:tap='handleChangeDate' >
+          <!-- 补充前置日历格子 -->
+          <view wx:for='{{monthItem.beforeDays}}' wx:key='{{id}}' class='day' />
+          <!-- 正文日历格子 -->
+          <view wx:for='{{monthItem.days}}' wx:key='{{id}}' class='day {{date.currentDate === item.id ? "active" : "none"}}' data-day='{{item.id}}'>
+            {{item.id}}
+            <view class='address'>{{item.record.text}}</view>
+            <view class='type' style='background-color: {{item.record.bgcolor}}'></view>
+          </view>
+          <!-- 补充后续日历格子 -->
+          <view wx:for='{{monthItem.afterDays}}' wx:key='{{id}}' class='day' />
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
