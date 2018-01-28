@@ -28,8 +28,8 @@
           <!-- 正文日历格子 -->
           <view wx:for='{{monthItem.days}}' wx:key='{{id}}' class='day {{date.currentDate === item.id ? "active" : "none"}}' data-day='{{item.id}}'>
             {{item.id}}
-            <view class='address'>{{item.record.text}}</view>
-            <view class='type' style='background-color: {{item.record.bgcolor}}'></view>
+            <view class='address'>{{calendarRecords[monthItem.month_record_key][item.id].text}}</view>
+            <view class='type' style='background-color: {{calendarRecords[monthItem.month_record_key][item.id].bgcolor}}'></view>
           </view>
           <!-- 补充后续日历格子 -->
           <view wx:for='{{monthItem.afterDays}}' wx:key='{{id}}' class='day' />

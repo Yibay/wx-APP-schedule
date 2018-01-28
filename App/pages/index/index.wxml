@@ -1,15 +1,8 @@
 <!--index.wxml-->
 <view class='g-page-container'>
   <!-- 日历组件 -->
-  <calendar />
+  <calendar bind:getDate = 'getDate' calendar-records='{{calendarRecords}}' bind:addActivity='addActivity' />
   <!-- 当日详情 -->
    <view class='m-record'> 
-      <!-- <view class='date'>{{date.currentYear}}年{{date.currentMonth + 1}}月{{date.currentDate}}日</view>   -->
-    <!-- 设置当日事件类型 -->
-     <!-- <view class='dateTypeBox'> 
-       <label>选择活动类型:</label> 
-       <button class='SetDateType' bind:tap='handleSetDateType'>选择</button> 
-     </view>  -->
-    <!-- 记录表单 -->
    </view> 
 </view>
