@@ -19,6 +19,10 @@ Component({
           // 15: { text: '...', color: '#b7b8f0'}
         }
       } 
+    },
+    showAddEvent: {
+      type: Boolean,
+      value: false
     }
   },
   // 2. 组件内数据

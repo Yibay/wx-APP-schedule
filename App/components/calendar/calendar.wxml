@@ -5,8 +5,10 @@
     <view class='last-month iconfont icon-left' bind:tap='handleToLastMonth' />
     <view class='current-month'>{{date.currentYear}} 年 {{date.currentMonth + 1}} 月</view>
     <view class='next-month iconfont icon-right' bind:tap='handleToNextMonth' />
-    <view class='today' bind:tap='changeToToday'>今</view> 
-    <view class='iconfont icon-add addActivity' bind:tap='addActivity' /> 
+    <view class='rightBtn'>
+      <view class='today' bind:tap='changeToToday'>今</view> 
+      <view class='iconfont icon-add addActivity' style='{{showAddEvent ? "" : "display:none;"}}' bind:tap='addActivity' /> 
+    </view>
   </view>
   <!-- 周头部 -->
   <view class='week-header'>

@@ -22,24 +22,25 @@
   font-size: 35rpx;
   font-weight: 700;
 }
-.m-calendar .month-header .today,
-.m-calendar .month-header .addActivity{
+.m-calendar .month-header .rightBtn{
+  display: -webkit-flex;
+  display: flex;
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
+  right: 0rpx;
+  flex-flow: row;
+}
+.m-calendar .month-header .today,
+.m-calendar .month-header .addActivity{
   border: 1rpx solid #f26293;
   width: 50rpx;
   height: 50rpx;
-  transform: translateY(-50%);
+  margin-right: 30rpx;
   border-radius: 50%;
   line-height: 50rpx;
   text-align: center;
   font-size: 35rpx;
-}
-.m-calendar .month-header .today{
-  right: 120rpx;
-}
-.m-calendar .month-header .addActivity{
-  right: 30rpx;
 }
 /* 日历组件：星期头部 */
 .m-calendar .week-header{
@@ -53,7 +54,7 @@
 }
 /* 日历组件 轮播区域 */
 .m-calendar .date-swiper{
-  height: calc(100vw - 1px);
+  height: calc((100vw - 1px) / 7 * 6 + 1px);
 }
 /* 日历组件：日期头部 */
 .m-calendar .date-header{
